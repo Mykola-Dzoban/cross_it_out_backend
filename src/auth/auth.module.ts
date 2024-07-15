@@ -1,11 +1,11 @@
-import { AuthController } from '@/auth/auth.controller'
-import { AuthService } from '@/auth/auth.service'
-import { FirebaseService } from '@/firebase/firebase.service'
-import { Module } from '@nestjs/common'
-import { JwtService } from '@nestjs/jwt'
+import { Module } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { AuthController } from './auth.controller';
+import { AuthService } from './auth.service';
+import { FirebaseService } from 'src/firebase/firebase.service';
 
 @Module({
-    controllers: [AuthController],
-    providers: [AuthService, FirebaseService, JwtService],
+  controllers: [AuthController],
+  providers: [AuthService, FirebaseService, JwtService],
 })
 export class AuthModule {}

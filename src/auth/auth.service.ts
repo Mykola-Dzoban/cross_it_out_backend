@@ -5,6 +5,7 @@ import admin from 'firebase-admin';
 import ms from 'ms';
 import { FirebaseService } from 'src/firebase/firebase.service';
 import { AuthLoginDto } from './dto/auth-login.dto';
+import { Logger } from 'src/utils/ConsoleLogger';
 
 @Injectable()
 export class AuthService {
@@ -23,6 +24,8 @@ export class AuthService {
         error: 'User not found',
       };
     }
+
+    Logger.success('User found', userRecord);
 
     return userRecord;
   }
