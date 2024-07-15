@@ -3,9 +3,9 @@ import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import admin from 'firebase-admin';
 import ms from 'ms';
-import { FirebaseService } from 'src/firebase/firebase.service';
+import { FirebaseService } from '../firebase/firebase.service';
 import { AuthLoginDto } from './dto/auth-login.dto';
-import { Logger } from 'src/utils/ConsoleLogger';
+import { Logger } from '../utils/ConsoleLogger';
 
 @Injectable()
 export class AuthService {

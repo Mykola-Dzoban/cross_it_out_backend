@@ -30,9 +30,11 @@ export class FirebaseService {
           infer: true,
         },
       ),
-      private_key: this.configService.get<string>('FIRE_ADMIN_PRIVATE_KEY', {
-        infer: true,
-      }),
+      private_key: this.configService
+        .get<string>('FIRE_ADMIN_PRIVATE_KEY', {
+          infer: true,
+        })
+        .replace(/\\n/g, '\n'),
       client_email: this.configService.get<string>('FIRE_ADMIN_CLIENT_EMAIL', {
         infer: true,
       }),
