@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import admin, { ServiceAccount } from 'firebase-admin';
 import { FirebaseFactory } from './firebase.factory';
+import { UserSchemaType } from 'src/utils/schemas/UserSchemas';
 
 @Injectable()
 export class FirebaseService {
@@ -14,7 +15,7 @@ export class FirebaseService {
   private firebaseFirestore: admin.firestore.Firestore;
   private firebaseStorage: admin.storage.Storage;
 
-  public users: FirebaseFactory<any>;
+  public users: FirebaseFactory<UserSchemaType>;
 
   constructor(private readonly configService: ConfigService<{}, true>) {
     this.adminSDK = {

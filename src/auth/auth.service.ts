@@ -1,11 +1,11 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import admin from 'firebase-admin';
-import ms from 'ms';
 import { FirebaseService } from '../firebase/firebase.service';
 import { AuthLoginDto } from './dto/auth-login.dto';
 import { Logger } from '../utils/ConsoleLogger';
+import { UserSchemaType } from 'src/utils/schemas/UserSchemas';
 
 @Injectable()
 export class AuthService {
@@ -30,24 +30,22 @@ export class AuthService {
     return userRecord;
   }
 
-  // private getJwtToken(user: Partial<UserSchemaType>, expiresIn: number) {
-  //   return this.jwtService.sign(
-  //     {
-  //       ...user,
-  //     },
-  //     {
-  //       secret: this.configService.get<string>('JWT_SECRET'),
-  //       expiresIn,
-  //     },
-  //   );
-  // }
+  private getJwtToken(user: Partial<UserSchemaType>) {
+    return this.jwtService.sign(
+      {
+        ...user,
+      },
+      {
+        secret: this.configService.get<string>('JWT_SECRET'),
+        expiresIn: '7d',
+      },
+    );
+  }
 
   async login(authLoginDto: AuthLoginDto) {
     const userRecord = await admin.auth().getUserByEmail(authLoginDto.email);
     if (!userRecord) {
-      return {
-        error: 'User not found',
-      };
+      throw new HttpException('User not found in system', HttpStatus.NOT_FOUND);
     }
 
     const user = (
@@ -55,20 +53,18 @@ export class AuthService {
         ref.where('email', '==', authLoginDto.email),
       )
     )?.[0];
+
     if (!user) {
-      throw new NotFoundException('User not found');
+      throw new HttpException(
+        'User not found in database',
+        HttpStatus.NOT_FOUND,
+      );
     }
 
-    const expiresIn = ms('14d');
-    // const token = this.getJwtToken(user, expiresIn);
+    const token = this.getJwtToken(user);
     return {
-      token: 'vsdwsv',
-      role: user.role,
+      token,
       id: user.id,
-      userOwnerId: user.userOwnerId,
-      expiresIn,
-      image: !!user.image ? user.image : userRecord.photoURL,
-      emailVerified: userRecord.emailVerified,
     };
   }
 }
