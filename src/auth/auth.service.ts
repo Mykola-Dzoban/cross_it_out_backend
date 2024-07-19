@@ -4,7 +4,6 @@ import { JwtService } from '@nestjs/jwt';
 import admin from 'firebase-admin';
 import { FirebaseService } from '../firebase/firebase.service';
 import { AuthLoginDto } from './dto/auth-login.dto';
-import { Logger } from '../utils/ConsoleLogger';
 import { UserSchemaType } from 'src/utils/schemas/UserSchemas';
 
 @Injectable()
@@ -25,9 +24,11 @@ export class AuthService {
       };
     }
 
-    Logger.success('User found', userRecord);
-
-    return userRecord;
+    return {
+      message: 'SUCCESS',
+      email: userRecord.email,
+      displayName: userRecord.displayName,
+    };
   }
 
   private getJwtToken(user: Partial<UserSchemaType>) {

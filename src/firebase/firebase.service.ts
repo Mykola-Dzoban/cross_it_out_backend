@@ -8,6 +8,7 @@ import { UserSchemaType } from 'src/utils/schemas/UserSchemas';
 export class FirebaseService {
   private readonly firebaseCollections = {
     users: `${process.env.NODE_ENV}_users`,
+    projects: `${process.env.NODE_ENV}_projects`,
   };
 
   private adminSDK: ServiceAccount;
@@ -16,6 +17,7 @@ export class FirebaseService {
   private firebaseStorage: admin.storage.Storage;
 
   public users: FirebaseFactory<UserSchemaType>;
+  public projects: FirebaseFactory<any>;
 
   constructor(private readonly configService: ConfigService<{}, true>) {
     this.adminSDK = {
@@ -73,6 +75,10 @@ export class FirebaseService {
     this.users = new FirebaseFactory(
       this.firebaseFirestore,
       this.firebaseCollections.users,
+    );
+    this.projects = new FirebaseFactory(
+      this.firebaseFirestore,
+      this.firebaseCollections.projects,
     );
   }
 }
