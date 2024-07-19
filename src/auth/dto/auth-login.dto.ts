@@ -4,7 +4,4 @@ export class AuthLoginDto {
   @IsEmail()
   @IsString()
   email: string;
-
-  // @IsString()
-  // password: string;
 }

@@ -33,27 +33,87 @@ class Logger {
   };
 
   static log(...args: any[]) {
-    console.log(`${this.colors.fg.blue}`, ...args, `${this.colors.reset}`);
+    console.log(
+      `${this.colors.fg.blue}`,
+      '=================================',
+      `${this.colors.reset}`,
+    );
+    console.log(`${this.colors.fg.blue}`, ...args);
+    console.log(
+      `${this.colors.fg.blue}`,
+      '=================================',
+      `${this.colors.reset}`,
+    );
   }
 
   static error(...args: any[]) {
-    console.error(`${this.colors.fg.red}`, ...args, `${this.colors.reset}`);
+    console.error(
+      `${this.colors.fg.red}`,
+      '=================================',
+      `${this.colors.reset}`,
+    );
+    console.error(`${this.colors.fg.red}`, ...args);
+    console.error(
+      `${this.colors.fg.red}`,
+      '=================================',
+      `${this.colors.reset}`,
+    );
   }
 
   static warn(...args: any[]) {
-    console.warn(`${this.colors.fg.yellow}`, ...args, `${this.colors.reset}`);
+    console.warn(
+      `${this.colors.fg.yellow}`,
+      '=================================',
+      `${this.colors.reset}`,
+    );
+    console.warn(`${this.colors.fg.yellow}`, ...args);
+    console.warn(
+      `${this.colors.fg.yellow}`,
+      '=================================',
+      `${this.colors.reset}`,
+    );
   }
 
   static debug(...args: any[]) {
-    console.debug(`${this.colors.fg.cyan}`, ...args, `${this.colors.reset}`);
+    console.debug(
+      `${this.colors.fg.cyan}`,
+      '=================================',
+      `${this.colors.reset}`,
+    );
+    console.debug(`${this.colors.fg.cyan}`, ...args);
+    console.debug(
+      `${this.colors.fg.cyan}`,
+      '=================================',
+      `${this.colors.reset}`,
+    );
   }
 
   static verbose(...args: any[]) {
-    console.log(`${this.colors.fg.magenta}`, ...args, `${this.colors.reset}`);
+    console.log(
+      `${this.colors.fg.magenta}`,
+      '=================================',
+      `${this.colors.reset}`,
+    );
+    console.log(`${this.colors.fg.magenta}`, ...args);
+    console.log(
+      `${this.colors.fg.magenta}`,
+      '=================================',
+      `${this.colors.reset}`,
+    );
   }
 
   static success(...args: any[]) {
-    console.log(`${this.colors.fg.green}`, ...args, `${this.colors.reset}`);
+    console.log(
+      `${this.colors.fg.green}`,
+      '=================================',
+      `${this.colors.reset}`,
+    );
+    console.log(`${this.colors.fg.green}`, ...args);
+    console.log(
+      `${this.colors.fg.green}`,
+      '=================================',
+      `${this.colors.reset}`,
+    );
   }
 }
 
