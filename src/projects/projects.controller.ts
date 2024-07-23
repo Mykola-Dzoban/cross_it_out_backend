@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ProjectsService } from './projects.service';
 import { CreateProjectDto } from './dto/project.create.dto';
 import { GetProjectDto } from './dto/project.get.dto';
@@ -10,6 +10,11 @@ export class ProjectsController {
   @Get()
   getProjectsByOwnerId(@Body() getProjectDto: GetProjectDto) {
     return this.projectsService.getProjectsByOwnerId(getProjectDto);
+  }
+
+  @Get(':id')
+  getProjectsById(@Param('id') projectId: string) {
+    return this.projectsService.getProjectById(projectId);
   }
 
   @Post()
