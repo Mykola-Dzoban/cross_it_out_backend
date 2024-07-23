@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { FirebaseService } from 'src/firebase/firebase.service';
 import { CreateProjectDto } from './dto/project.create.dto';
 import { Logger } from 'src/utils/ConsoleLogger';
@@ -16,6 +16,17 @@ export class ProjectsService {
     );
     Logger.debug(projects);
     return projects;
+  }
+
+  async getProjectById(projectId: string) {
+    Logger.debug(projectId);
+    const project = await this.db.projects.getById(projectId);
+    if (!project) {
+      Logger.error('Project not found');
+      throw new HttpException('Project not found', HttpStatus.NOT_FOUND);
+    }
+    Logger.debug(project);
+    return project;
   }
 
   async createProject(createProjectDto: CreateProjectDto) {
