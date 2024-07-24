@@ -33,4 +33,13 @@ export class ProjectsService {
     Logger.debug(createProjectDto);
     return this.db.projects.create(createProjectDto);
   }
+
+  async deleteProject(projectId: string) {
+    Logger.debug(projectId);
+    await this.db.projects.delete(projectId);
+    Logger.debug('Project deleted');
+    return {
+      success: true,
+    };
+  }
 }
