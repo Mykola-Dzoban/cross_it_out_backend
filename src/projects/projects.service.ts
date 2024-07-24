@@ -3,6 +3,7 @@ import { FirebaseService } from 'src/firebase/firebase.service';
 import { CreateProjectDto } from './dto/project.create.dto';
 import { Logger } from 'src/utils/ConsoleLogger';
 import { GetProjectDto } from './dto/project.get.dto';
+import { UpdateProjectDto } from './dto/project.update.dto';
 
 @Injectable()
 export class ProjectsService {
@@ -32,6 +33,14 @@ export class ProjectsService {
   async createProject(createProjectDto: CreateProjectDto) {
     Logger.debug(createProjectDto);
     return this.db.projects.create(createProjectDto);
+  }
+
+  async updateProject(updateProjectDto: UpdateProjectDto) {
+    Logger.debug(updateProjectDto);
+    await this.db.projects.update(updateProjectDto);
+    return {
+      success: true,
+    };
   }
 
   async deleteProject(projectId: string) {
