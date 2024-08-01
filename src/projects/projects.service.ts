@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { FirebaseService } from 'src/firebase/firebase.service';
-import { CreateProjectDto } from './dto/project.create.dto';
 import { Logger } from 'src/utils/ConsoleLogger';
+import { CreateProjectDto } from './dto/project.create.dto';
 import { GetProjectDto } from './dto/project.get.dto';
 import { UpdateProjectDto } from './dto/project.update.dto';
 

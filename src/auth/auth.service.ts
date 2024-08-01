@@ -2,9 +2,9 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import admin from 'firebase-admin';
+import { UserSchemaType } from 'src/utils/schemas/UserSchemas';
 import { FirebaseService } from '../firebase/firebase.service';
 import { AuthLoginDto } from './dto/auth-login.dto';
-import { UserSchemaType } from 'src/utils/schemas/UserSchemas';
 
 @Injectable()
 export class AuthService {
